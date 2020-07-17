@@ -44,7 +44,7 @@ class LinkedList:
         if node is None:
             return
 
-        # define next
+        # define next & get the next node
         next = node.get_next()  # self.next_node
 
         # if node has prev (True/is not None), set node to next
