@@ -123,37 +123,51 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        # use a queue
-        # start queue with root node
+        # You should import the queue class from earlier in the
+        # week and use that class to implement this method
+        # Use a queue to form a "line"
+        # for the nodes to "get in"
         queue = Queue()
         queue.enqueue(node)
-        # while loop that checks size of queue
-        # pointer variable that updates at the begining of each loop
-        # while the queue exists, drop a node from the queue and print its value
+        # need a while loop to iterate
+        # what are we checking in the while statement?
+        # while length of queue is greater than 0
+        # dequeue item from front of queue
+        # print that item
+
         while queue.size > 0:
             node = queue.dequeue()
             print(node.value)
-            # there is a left branch, add the left node to the queue
+            # place current item's left node in queue if not None
             if node.left:
                 queue.enqueue(node.left)
-            # same for the right
+            # place current item's right node in queue if not None
             if node.right:
                 queue.enqueue(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        # stack
-        # start stack with the root node
+        # initialize an empty stack
+        # push the root node onto the stack
+
         stack = Stack()
         stack.push(node)
-        # while loop that check stack size
-        # pointer
+        # need a while loop to manager our iteration
+        # if stack is not empty enter the while loop
+        # pop top item off the stack
+        # print that item's value
         while stack.size > 0:
             node = stack.pop()
             print(node.value)
+            # if there is a right subtree
+            # push right item onto the stack
+
             if node.left:
                 stack.push(node.left)
+            # if there is a left subtree
+                # push left item onto the stack
+
             if node.right:
                 stack.push(node.right)
 
