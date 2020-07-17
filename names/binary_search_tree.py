@@ -90,81 +90,80 @@ class BSTNode:
     # Hint:  Use a recursive, depth first traversal
 
     def in_order_print(self, node):
+        # Lowest number is always the furthest to the left
         # if the current node is None
         # we know we've reached the end of a recursion
         # (base case) we want to return
-        if self is None:
+        if node is None:
             return
         # check if we can "move left"
-        if self.left is not None:
-            self.left.in_order_print(node)
-    # visit the node by printing its value
-        print(self.value)
-# check if we can "move right"
-        if self.right is not None:
-            self.right.in_order_print(node)
+        if node.left is None and node.right is None:
+            print(node.value)
+        # if left is none and right is not none
+            # print node.value
+            # point to right
+        if node.left is None and node.right is not None:
+            print(node.value)
+            self.in_order_print(node.right)
+        # if left is not none and right is none
+            # point to node.left
+            # print node.value
+        if node.left is not None and node.right is None:
+            self.in_order_print(node.left)
+            print(node.value)
+        # if left is not none and right is not none
+            # point to node.left
+            # print node.value
+            # point to node.right
+        if node.left is not None and node.right is not None:
+            self.in_order_print(node.left)
+            print(node.value)
+            self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-    # You should import the queue class from earlier in the
-    # week and use that class to implement this method
-    # Use a queue to form a "line"
-    # for the nodes to "get in"
+        # use a queue
+        # start queue with root node
         queue = Queue()
         queue.enqueue(node)
+        # while loop that checks size of queue
+        # pointer variable that updates at the begining of each loop
+        # while the queue exists, drop a node from the queue and print its value
+        while queue.size > 0:
+            node = queue.dequeue()
+            print(node.value)
+            # there is a left branch, add the left node to the queue
+            if node.left:
+                queue.enqueue(node.left)
+            # same for the right
+            if node.right:
+                queue.enqueue(node.right)
 
-    # start by placing the root in the queue
-    # need a while loop to iterate
-    # what are we checking in the while statement?
-    # while length of queue is greater than 0
-    # dequeue item from front of queue
-        while queue.len() > 0:
-            current_node = queue.dequeue()
-
-
-    # print that item
-    # place current item's left node in queue if not None
-​ if current_node.left:
-            queue.enqueue(current_node.left)
-
-           # place current item's right node in queue if not None
-        if current_node.right:
-                queue.enqueue(current_node.right)
-            print(current_node.value
-
-   # Print the value of every node, starting with the given node,
-   # in an iterative depth first traversal
-   def dft_print(self, node):
-       # initialize an empty stack
-        # push the root node onto the stack
-         stack = Stack()
+    # Print the value of every node, starting with the given node,
+    # in an iterative depth first traversal
+    def dft_print(self, node):
+        # stack
+        # start stack with the root node
+        stack = Stack()
         stack.push(node)
-       # need a while loop to manager our iteration
-       # if stack is not empty enter the while loop
-           # pop top item off the stack
-           # print that item's value
-           while stack.len() > 0:
-            current_node = stack.pop()
-​
-           # if there is a right subtree
-               # push right item onto the stack
-            if current_node.right:
-                stack.push(current_node.right)
-
-           # if there is a left subtree
-               # push left item onto the stack
-             if current_node.left:
-                stack.push(current_node.left)
-            print(current_node.value)
+        # while loop that check stack size
+        # pointer
+        while stack.size > 0:
+            node = stack.pop()
+            print(node.value)
+            if node.left:
+                stack.push(node.left)
+            if node.right:
+                stack.push(node.right)
 
    # Stretch Goals -------------------------
    # Note: Research may be required
 
    # Print Pre-order recursive DFT
-   def pre_order_dft(self, node):
-        pass
+#    def pre_order_dft(self, node):
+#         pass
 
-    # Print Post-order recursive DFT
-    def post_order_dft(self, node):
-        pass
+#     # Print Post-order recursive DFT
+#     def post_order_dft(self, node):
+#         pass
